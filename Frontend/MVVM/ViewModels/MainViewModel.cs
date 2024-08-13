@@ -1,6 +1,6 @@
-﻿using DataStructures.SaveData;
-using Frontend.Commands;
+﻿using Frontend.Commands;
 using Frontend.Core;
+using Frontend.MVVM.Models.SaveData;
 using Frontend.Services;
 using System.Windows;
 

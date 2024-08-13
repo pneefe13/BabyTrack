@@ -1,7 +1,8 @@
-﻿using DataStructures.SaveData;
+﻿using Frontend.MVVM.Models.SaveData;
+using System.IO;
 using System.Text;
 
-namespace DataStructures.Serialization;
+namespace Frontend.Serialization;
 
 public class MainDataSerializer : ITypedSerializer<MainData>
 {

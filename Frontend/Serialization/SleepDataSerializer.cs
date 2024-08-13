@@ -1,17 +1,17 @@
-﻿using DataStructures.SaveData;
+﻿using Frontend.MVVM.Models.SaveData;
 
-namespace DataStructures.Serialization;
-public class ToiletDataSerializer : ITypedSerializer<ToiletData>
+namespace Frontend.Serialization;
+public class SleepDataSerializer : ITypedSerializer<SleepData>
 {
     public bool CanSerialize(Type type)
     {
-        return type == typeof(ToiletData);
+        return type == typeof(SleepData);
     }
 
-    public ToiletData Deserialize(string serialized)
+    public SleepData Deserialize(string serialized)
     {
         //TODO
-        return new ToiletData();
+        return new SleepData();
     }
 
     public object Deserialize(string serialized, Type type)
@@ -24,10 +24,10 @@ public class ToiletDataSerializer : ITypedSerializer<ToiletData>
 
     public Type ProvideType()
     {
-        return typeof(ToiletData);
+        return typeof(SleepData);
     }
 
-    public string Serialize(ToiletData data)
+    public string Serialize(SleepData data)
     {
         //TODO
         return string.Empty;
@@ -35,8 +35,8 @@ public class ToiletDataSerializer : ITypedSerializer<ToiletData>
 
     public string Serialize(object data)
     {
-        if (data is ToiletData toiletData)
-            return Serialize(toiletData);
+        if (data is SleepData sleepData)
+            return Serialize(sleepData);
 
         throw new InvalidOperationException($"{this} cannot serialize '{data.GetType()}';");
     }

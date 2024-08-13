@@ -1,7 +1,7 @@
-﻿using DataStructures.SaveData;
-using DataStructures.Serialization;
-using Frontend.Core;
+﻿using Frontend.Core;
+using Frontend.MVVM.Models.SaveData;
 using Frontend.MVVM.ViewModels;
+using Frontend.Serialization;
 using Frontend.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;

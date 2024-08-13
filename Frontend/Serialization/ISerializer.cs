@@ -1,4 +1,4 @@
-﻿namespace DataStructures.Serialization;
+﻿namespace Frontend.Serialization;
 
 public interface ISerializer
 {

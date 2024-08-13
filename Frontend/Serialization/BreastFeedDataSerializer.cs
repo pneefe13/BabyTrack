@@ -1,17 +1,18 @@
-﻿using DataStructures.SaveData;
+﻿using Frontend.MVVM.Models.SaveData;
 
-namespace DataStructures.Serialization;
-public class SleepDataSerializer : ITypedSerializer<SleepData>
+namespace Frontend.Serialization;
+
+public class BreastFeedDataSerializer : ITypedSerializer<BreastFeedData>
 {
     public bool CanSerialize(Type type)
     {
-        return type == typeof(SleepData);
+        return type == typeof(BreastFeedData);
     }
 
-    public SleepData Deserialize(string serialized)
+    public BreastFeedData Deserialize(string serialized)
     {
         //TODO
-        return new SleepData();
+        return new BreastFeedData();
     }
 
     public object Deserialize(string serialized, Type type)
@@ -24,10 +25,10 @@ public class SleepDataSerializer : ITypedSerializer<SleepData>
 
     public Type ProvideType()
     {
-        return typeof(SleepData);
+        return typeof(BreastFeedData);
     }
 
-    public string Serialize(SleepData data)
+    public string Serialize(BreastFeedData data)
     {
         //TODO
         return string.Empty;
@@ -35,8 +36,8 @@ public class SleepDataSerializer : ITypedSerializer<SleepData>
 
     public string Serialize(object data)
     {
-        if (data is SleepData sleepData)
-            return Serialize(sleepData);
+        if (data is BreastFeedData breastFeedData)
+            return Serialize(breastFeedData);
 
         throw new InvalidOperationException($"{this} cannot serialize '{data.GetType()}';");
     }

@@ -1,6 +1,8 @@
-﻿namespace DataStructures.SaveData;
+﻿using Frontend.Core;
 
-public class MainData
+namespace Frontend.MVVM.Models.SaveData;
+
+public class MainData : ObservableObject
 {
     public MainData(BreastFeedData breastFeedData, ToiletData toiletData, SleepData sleepData)
     {
