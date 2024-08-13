@@ -2,7 +2,7 @@
 
 public interface ISerializationService
 {
-    public string Serialize(object data);
+    public byte[] Serialize(object data);
 
-    public object Deserialize(string serialized, Type targetType);
+    public object Deserialize(byte[] serialized, Type targetType);
 }

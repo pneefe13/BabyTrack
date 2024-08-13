@@ -6,7 +6,7 @@ namespace Frontend.MVVM.ViewModels;
 
 public class HomeViewModel : ViewModelBase
 {
-    public HomeViewModel(INavigationService navigationService) : base(navigationService) 
+    public HomeViewModel(INavigationService navigationService, IMainDataService mainDataService) : base(navigationService, mainDataService) 
     {
     }
 

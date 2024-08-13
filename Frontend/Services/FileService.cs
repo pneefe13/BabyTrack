@@ -4,7 +4,7 @@ using System.IO;
 namespace Frontend.Services;
 public class FileService : IFileService
 {
-    public string? LoadFromFile()
+    public byte[]? LoadFromFile()
     {
         var dialog = new OpenFileDialog();
         dialog.Filter = "BabyTrack save data (.btsv)|*.btsv"; // todo more generic?
@@ -14,14 +14,14 @@ public class FileService : IFileService
         if (result == true)
         {
             var fileName = dialog.FileName;
-            var content = File.ReadAllText(fileName);
+            var content = File.ReadAllBytes(fileName);
             return content;
         }
 
         return null;
     }
 
-    public bool SaveToFile(string content)
+    public bool SaveToFile(byte[] content)
     {
         var dialog = new SaveFileDialog();
         dialog.Filter = "BabyTrack save data (.btsv)|*.btsv"; // todo more generic?
@@ -31,7 +31,7 @@ public class FileService : IFileService
         if (result == true)
         {
             var fileName = dialog.FileName;
-            File.WriteAllText(fileName, content);
+            File.WriteAllBytes(fileName, content);
             return true;
         }
 

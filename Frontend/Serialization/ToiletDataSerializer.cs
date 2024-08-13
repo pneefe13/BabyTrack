@@ -8,13 +8,13 @@ public class ToiletDataSerializer : ITypedSerializer<ToiletData>
         return type == typeof(ToiletData);
     }
 
-    public ToiletData Deserialize(string serialized)
+    public ToiletData Deserialize(byte[] serialized)
     {
         //TODO
         return new ToiletData();
     }
 
-    public object Deserialize(string serialized, Type type)
+    public object Deserialize(byte[] serialized, Type type)
     {
         if (type != ProvideType())
             throw new InvalidOperationException($"{this} cannot deserialize to '{type}'!");
@@ -27,13 +27,13 @@ public class ToiletDataSerializer : ITypedSerializer<ToiletData>
         return typeof(ToiletData);
     }
 
-    public string Serialize(ToiletData data)
+    public byte[] Serialize(ToiletData data)
     {
         //TODO
-        return string.Empty;
+        return [];
     }
 
-    public string Serialize(object data)
+    public byte[] Serialize(object data)
     {
         if (data is ToiletData toiletData)
             return Serialize(toiletData);

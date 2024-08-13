@@ -5,13 +5,25 @@ namespace Frontend.MVVM.Models.SaveData;
 
 public class SleepIntervalInfo : ObservableObject
 {
-    public SleepIntervalInfo(Time start, Time end)
+    public SleepIntervalInfo(TimeOnly start, TimeOnly end, bool hasSlept)
     {
         Start = start;
         End = end;
+        HasSlept = hasSlept;
     }
 
-    public Time Start { get; private init; }
+    public TimeOnly Start { get; private init; }
 
-    public Time End { get; private init; }
+    public TimeOnly End { get; private init; }
+
+    public bool HasSlept
+    {
+        get { return _hasSlept; }
+        set
+        {
+            SetValue(ref _hasSlept, value);
+        }
+    }
+
+    private bool _hasSlept;
 }

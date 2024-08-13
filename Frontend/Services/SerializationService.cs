@@ -10,14 +10,14 @@ public class SerializationService : ObservableObject, ISerializationService
         Serializers = serializers.ToList();
     }
 
-    public string Serialize(object data)
+    public byte[] Serialize(object data)
     {
         var serializer = GetSerializer(data);
         var serialized = serializer.Serialize(data);
         return serialized;
     }
 
-    public object Deserialize(string serialized, Type targetType)
+    public object Deserialize(byte[] serialized, Type targetType)
     {
         var deserializer = GetDeserializer(targetType);
         var data = deserializer.Deserialize(serialized, targetType);

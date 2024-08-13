@@ -10,12 +10,11 @@ public class MainViewModel : ViewModelBase
 {
     public MainViewModel(INavigationService navigationService,
                          ISerializationService serializationService,
-                         IFileService fileService) : base(navigationService)
+                         IFileService fileService,
+                         IMainDataService mainDataService) : base(navigationService, mainDataService)
     {
-        NavigationService = navigationService;
         SerializationService = serializationService;
         FileService = fileService;
-        _mainData = MainData.CreateDummy();
     }
 
     public Command NavigateToHomeCommand { get { return GetCommand(NavigateHome); } }
@@ -71,31 +70,18 @@ public class MainViewModel : ViewModelBase
             return;
         }
 
-        MainData = mainData;
+        MainDataService.SetData(mainData);
         MessageBox.Show("Successfully loaded data!");
     }
 
     private void SaveData()
     {
-        if (MainData is null)
-        {
-            MessageBox.Show("No data to save!");
-            return;
-        }
-
-        var serialized = SerializationService.Serialize(MainData);
+        var mainData = MainDataService.MainData;
+        var serialized = SerializationService.Serialize(mainData);
         var success = FileService.SaveToFile(serialized);
         if (!success)
             MessageBox.Show("No data was saved.");
     }
-
-    public MainData MainData
-    {
-        get { return _mainData; }
-        set { SetValue(ref _mainData, value); }
-    }
-
-    private MainData _mainData;
 
     private ISerializationService _serializationService = null!;
     private IFileService _fileService = null!;

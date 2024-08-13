@@ -8,6 +8,15 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#700000">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Content="Add another day"
+                    Width="100"
+                    Command="{Binding AddDayCommand}" />
+        </StackPanel>
     </Grid>
 </UserControl>

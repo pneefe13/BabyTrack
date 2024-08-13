@@ -6,7 +6,7 @@ public interface ISerializer
 
     public Type ProvideType();
 
-    public string Serialize(object data);
+    public byte[] Serialize(object data);
 
-    public object Deserialize(string serialized, Type type);
+    public object Deserialize(byte[] serialized, Type type);
 }

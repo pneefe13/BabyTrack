@@ -5,9 +5,10 @@ namespace Frontend.Core;
 
 public abstract class ViewModelBase : ObservableObject
 {
-    protected ViewModelBase(INavigationService navigationService)
+    protected ViewModelBase(INavigationService navigationService, IMainDataService mainDataService)
     {
         NavigationService = navigationService;
+        MainDataService = mainDataService;
         _commands = new();
     }
 
@@ -15,6 +16,12 @@ public abstract class ViewModelBase : ObservableObject
     {
         get { return _navigationService; }
         set { SetValue(ref _navigationService, value); }
+    }
+
+    public IMainDataService MainDataService
+    {
+        get { return _mainDataService; }
+        set { SetValue(ref _mainDataService, value); }
     }
 
     protected Command GetCommand(Action action)
@@ -38,4 +45,5 @@ public abstract class ViewModelBase : ObservableObject
     private readonly Dictionary<string, BaseCommand> _commands;
 
     private INavigationService _navigationService = null!;
+    private IMainDataService _mainDataService = null!;
 }

@@ -9,13 +9,13 @@ public class BreastFeedDataSerializer : ITypedSerializer<BreastFeedData>
         return type == typeof(BreastFeedData);
     }
 
-    public BreastFeedData Deserialize(string serialized)
+    public BreastFeedData Deserialize(byte[] serialized)
     {
         //TODO
         return new BreastFeedData();
     }
 
-    public object Deserialize(string serialized, Type type)
+    public object Deserialize(byte[] serialized, Type type)
     {
         if (type != ProvideType())
             throw new InvalidOperationException($"{this} cannot deserialize to '{type}'!");
@@ -28,13 +28,13 @@ public class BreastFeedDataSerializer : ITypedSerializer<BreastFeedData>
         return typeof(BreastFeedData);
     }
 
-    public string Serialize(BreastFeedData data)
+    public byte[] Serialize(BreastFeedData data)
     {
         //TODO
-        return string.Empty;
+        return [];
     }
 
-    public string Serialize(object data)
+    public byte[] Serialize(object data)
     {
         if (data is BreastFeedData breastFeedData)
             return Serialize(breastFeedData);

@@ -2,7 +2,7 @@
 
 public interface IFileService
 {
-    public bool SaveToFile(string content);
+    public bool SaveToFile(byte[] content);
 
-    public string? LoadFromFile();
+    public byte[]? LoadFromFile();
 }

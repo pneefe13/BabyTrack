@@ -4,5 +4,5 @@ namespace Frontend.MVVM.Models.SaveData;
 
 public class SleepData : ObservableObject
 {
-    List<DaySleepInfo> DaySleepInfos { get; } = [];
+    public List<DaySleepInfo> DaySleepInfos { get; } = [];
 }

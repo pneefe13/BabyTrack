@@ -6,7 +6,7 @@ namespace Frontend.MVVM.ViewModels;
 
 public class SettingsViewModel : ViewModelBase
 {
-    public SettingsViewModel(INavigationService navigationService) : base(navigationService)
+    public SettingsViewModel(INavigationService navigationService, IMainDataService mainDataService) : base(navigationService, mainDataService)
     {
     }
 

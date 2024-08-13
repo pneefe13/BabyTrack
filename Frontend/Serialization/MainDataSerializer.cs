@@ -15,10 +15,9 @@ public class MainDataSerializer : ITypedSerializer<MainData>
         _breastFeedDataSerializer = breastFeedDataSerializer;
     }
 
-    public MainData Deserialize(string serialized)
+    public MainData Deserialize(byte[] serialized)
     {
-        var bytes = Encoding.UTF8.GetBytes(serialized);
-        using var ms = new MemoryStream(bytes);
+        using var ms = new MemoryStream(serialized);
         var reader = new BinaryReader(ms);
         var header = reader.ReadInt32();
         if (header != SerializationHeader)
@@ -32,32 +31,38 @@ public class MainDataSerializer : ITypedSerializer<MainData>
             //TODO handle wrong version
         }
 
-        var serializedToiletData = reader.ReadString();
+        var serializedToiletDataLength = reader.ReadInt32();
+        var serializedToiletData = reader.ReadBytes(serializedToiletDataLength);
         var toiletData = _toiletDataSerializer.Deserialize(serializedToiletData);
-        var serializedBreastFeedData = reader.ReadString();
+
+        var serializedBreastFeedDataLength = reader.ReadInt32();
+        var serializedBreastFeedData = reader.ReadBytes(serializedBreastFeedDataLength);
         var breastFeedData = _breastFeedDataSerializer.Deserialize(serializedBreastFeedData);
-        var serializedSleepData = reader.ReadString();
+
+        var serializedSleepDataLength = reader.ReadInt32();
+        var serializedSleepData = reader.ReadBytes(serializedSleepDataLength);
         var sleepData = _sleepDataSerializer.Deserialize(serializedSleepData);
+        
         return new MainData(breastFeedData, toiletData, sleepData);
     }
 
-    public string Serialize(MainData data)
+    public byte[] Serialize(MainData data)
     {
         using var ms = new MemoryStream();
         var writer = new BinaryWriter(ms);
         writer.Write(SerializationHeader);
         writer.Write(Version);
         var serializedToiletData = _toiletDataSerializer.Serialize(data.ToiletData);
+        writer.Write(serializedToiletData.Length);
         writer.Write(serializedToiletData);
         var serializedBreastFeedData = _breastFeedDataSerializer.Serialize(data.BreastFeedData);
+        writer.Write(serializedBreastFeedData.Length);
         writer.Write(serializedBreastFeedData);
         var serializedSleepData = _sleepDataSerializer.Serialize(data.SleepData);
+        writer.Write(serializedSleepData.Length);
         writer.Write(serializedSleepData);
 
-        ms.Position = 0;
-        var reader = new StreamReader(ms, Encoding.UTF8);
-        var serialized = reader.ReadToEnd();
-        return serialized;
+        return ms.ToArray();
     }
 
     public bool CanSerialize(Type type)
@@ -65,7 +70,7 @@ public class MainDataSerializer : ITypedSerializer<MainData>
         return type == typeof(MainData);
     }
 
-    public string Serialize(object data)
+    public byte[] Serialize(object data)
     {
         if (data is MainData mainData)
             return Serialize(mainData);
@@ -78,7 +83,7 @@ public class MainDataSerializer : ITypedSerializer<MainData>
         return typeof(MainData);
     }
 
-    public object Deserialize(string serialized, Type type)
+    public object Deserialize(byte[] serialized, Type type)
     {
         if (type != ProvideType())
             throw new InvalidOperationException($"{this} cannot deserialize to '{type}'!");
