@@ -2,7 +2,7 @@
 using Frontend.Core;
 using Frontend.MVVM.Models.SaveData;
 using Frontend.Services;
-using System.Windows.Ink;
+using System.Windows;
 
 namespace Frontend.MVVM.ViewModels;
 public class SleepViewModel : ViewModelBase
@@ -10,10 +10,23 @@ public class SleepViewModel : ViewModelBase
     public SleepViewModel(INavigationService navigationService, IMainDataService mainDataService) : base(navigationService,
                                                                                                          mainDataService)
     {
-        
+
     }
 
     public Command AddDayCommand { get { return GetCommand(AddDay); } }
+
+    public ParameterCommand ToggleFlagCommand { get { return GetCommand(ToggleFlag); } }
+
+    private void ToggleFlag(object? parameter)
+    {
+        if (parameter is not SleepIntervalInfo info)
+        {
+            MessageBox.Show("oops");
+            return;
+        }
+
+        info.HasSlept = !info.HasSlept;
+    }
 
     private void AddDay()
     {
@@ -22,7 +35,7 @@ public class SleepViewModel : ViewModelBase
         sleepInfos.Add(new DaySleepInfo(newer));
     }
 
-    private static DateTime GetNewestDayToAdd(List<DaySleepInfo> sleepInfos)
+    private static DateTime GetNewestDayToAdd(ICollection<DaySleepInfo> sleepInfos)
     {
         if (sleepInfos.Any())
         {

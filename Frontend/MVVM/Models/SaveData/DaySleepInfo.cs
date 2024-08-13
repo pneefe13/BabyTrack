@@ -1,4 +1,5 @@
 ﻿using Frontend.Core;
+using System.Collections.ObjectModel;
 
 namespace Frontend.MVVM.Models.SaveData;
 
@@ -7,6 +8,7 @@ public class DaySleepInfo : ObservableObject
     public DaySleepInfo(DateTime day)
     {
         Day = new DateTime(day.Year, day.Month, day.Day, 0, 0, 0);
+        _intervals = [];
         GenerateHalfHourIntervals();
     }
 
@@ -23,5 +25,13 @@ public class DaySleepInfo : ObservableObject
 
     public DateTime Day { get; private init; }
 
-    public List<SleepIntervalInfo> Intervals { get; } = [];
+    public ObservableCollection<SleepIntervalInfo> Intervals
+    {
+        get { return _intervals; }
+        set 
+        {
+            SetValue(ref _intervals, value); }
+        }
+
+    private ObservableCollection<SleepIntervalInfo> _intervals;
 }

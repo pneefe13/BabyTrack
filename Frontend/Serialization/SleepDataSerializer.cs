@@ -34,7 +34,10 @@ public class SleepDataSerializer : ITypedSerializer<SleepData>
         }
 
         var sleepData = new SleepData();
-        sleepData.DaySleepInfos.AddRange(daySleepInfos);
+        foreach (var item in daySleepInfos)
+        {
+            sleepData.DaySleepInfos.Add(item);
+        }
 
         return sleepData;
     }

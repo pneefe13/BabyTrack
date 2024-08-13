@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Frontend.MVVM.Views"
+             xmlns:converter="clr-namespace:Frontend.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#700000">
+    <UserControl.Resources>
+        <converter:BoolToBrushConverter x:Key="BoolToBrushConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
@@ -18,5 +22,7 @@
                     Width="100"
                     Command="{Binding AddDayCommand}" />
         </StackPanel>
+        <DataGrid Grid.Row="1" x:Name="dataGrid" ItemsSource="{Binding MainDataService.MainData.SleepData.DaySleepInfos}" AutoGenerateColumns="False">
+        </DataGrid>
     </Grid>
 </UserControl>
