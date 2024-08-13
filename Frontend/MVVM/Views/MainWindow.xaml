@@ -30,6 +30,12 @@
             <Button Content="Settings"
                     Height="25"
                     Command="{Binding NavigateToSettingsCommand}" />
+            <Button Content="Save..."
+                    Height="25"
+                    Command="{Binding SaveDataCommand}" />
+            <Button Content="Load..."
+                    Height="25"
+                    Command="{Binding LoadDataCommand}" />
             <Button Content="DEBUG"
                     Height="25"
                     Click="Button_Click" />

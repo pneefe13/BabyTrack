@@ -9,6 +9,11 @@ public class MainData
         SleepData = sleepData;
     }
 
+    public static MainData CreateDummy()
+    {
+        return new MainData(new BreastFeedData(), new ToiletData(), new SleepData());
+    }
+
     public BreastFeedData BreastFeedData { get; private init; }
 
     public ToiletData ToiletData { get; private init; }

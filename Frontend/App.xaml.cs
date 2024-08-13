@@ -37,6 +37,7 @@ public partial class App : Application
     {
         services.AddSingleton<INavigationService, NavigationService>();
         services.AddSingleton<ISerializationService, SerializationService>();
+        services.AddSingleton<IFileService, FileService>();
     }
 
     private static void AddSerializers(ServiceCollection services)
