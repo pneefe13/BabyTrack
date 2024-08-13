@@ -10,7 +10,7 @@ public class MainViewModel : ViewModelBase
 {
     public MainViewModel(INavigationService navigationService,
                          ISerializationService serializationService,
-                         IFileService fileService)
+                         IFileService fileService) : base(navigationService)
     {
         NavigationService = navigationService;
         SerializationService = serializationService;
@@ -22,15 +22,11 @@ public class MainViewModel : ViewModelBase
 
     public Command NavigateToSettingsCommand { get { return GetCommand(NavigateSettings); } }
 
+    public Command NavigateToSleepCommand { get { return GetCommand(NavigateSleep); } }
+
     public Command SaveDataCommand { get { return GetCommand(SaveData); } }
 
     public Command LoadDataCommand { get { return GetCommand(LoadData); } }
-
-    public INavigationService NavigationService
-    {
-        get { return _navigationService; }
-        set { SetValue(ref _navigationService, value); }
-    }
 
     public ISerializationService SerializationService
     {
@@ -52,6 +48,11 @@ public class MainViewModel : ViewModelBase
     private void NavigateSettings()
     {
         NavigationService.NavigateTo<SettingsViewModel>();
+    }
+
+    private void NavigateSleep()
+    {
+        NavigationService.NavigateTo<SleepViewModel>();
     }
 
     private void LoadData()
@@ -96,7 +97,6 @@ public class MainViewModel : ViewModelBase
 
     private MainData _mainData;
 
-    private INavigationService _navigationService = null!;
     private ISerializationService _serializationService = null!;
     private IFileService _fileService = null!;
 }

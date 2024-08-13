@@ -1,12 +1,20 @@
 ﻿using Frontend.Commands;
+using Frontend.Services;
 
 namespace Frontend.Core;
 
 public abstract class ViewModelBase : ObservableObject
 {
-    protected ViewModelBase()
+    protected ViewModelBase(INavigationService navigationService)
     {
+        NavigationService = navigationService;
         _commands = new();
+    }
+
+    public INavigationService NavigationService
+    {
+        get { return _navigationService; }
+        set { SetValue(ref _navigationService, value); }
     }
 
     protected Command GetCommand(Action action)
@@ -28,4 +36,6 @@ public abstract class ViewModelBase : ObservableObject
     }
 
     private readonly Dictionary<string, BaseCommand> _commands;
+
+    private INavigationService _navigationService = null!;
 }

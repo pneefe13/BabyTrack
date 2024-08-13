@@ -15,7 +15,9 @@
         <DataTemplate DataType="{x:Type viewModels:SettingsViewModel}">
             <views:SettingsView />
         </DataTemplate>
-
+        <DataTemplate DataType="{x:Type viewModels:SleepViewModel}">
+            <views:SleepView />
+        </DataTemplate>
     </Window.Resources>
     <Grid Background="#303030">
         <Grid.ColumnDefinitions>
@@ -24,6 +26,9 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0">
+            <Button Content="Sleep"
+                    Height="25"
+                    Command="{Binding NavigateToSleepCommand}" />
             <Button Content="Home"
                     Height="25"
                     Command="{Binding NavigateToHomeCommand}" />

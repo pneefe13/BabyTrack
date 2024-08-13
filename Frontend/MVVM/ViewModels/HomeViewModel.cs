@@ -6,19 +6,8 @@ namespace Frontend.MVVM.ViewModels;
 
 public class HomeViewModel : ViewModelBase
 {
-    public HomeViewModel(INavigationService navigationService)
+    public HomeViewModel(INavigationService navigationService) : base(navigationService) 
     {
-        NavigationService = navigationService;
-    }
-
-    public INavigationService NavigationService 
-    { 
-        get { return _navigationService; }
-        set 
-        { 
-            _navigationService = value;
-            OnPropertyChanged(); 
-        }
     }
 
     public Command NavigateToSettingsCommand { get { return GetCommand(NavigateToSettings); } }
@@ -27,6 +16,4 @@ public class HomeViewModel : ViewModelBase
     {
         NavigationService.NavigateTo<SettingsViewModel>();
     }
-
-    private INavigationService _navigationService = null!;
 }

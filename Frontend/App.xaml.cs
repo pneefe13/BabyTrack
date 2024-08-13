@@ -57,6 +57,7 @@ public partial class App : Application
         services.AddSingleton<MainViewModel>();
         services.AddSingleton<HomeViewModel>();
         services.AddSingleton<SettingsViewModel>();
+        services.AddSingleton<SleepViewModel>();
     }
 
     protected override void OnStartup(StartupEventArgs e)
