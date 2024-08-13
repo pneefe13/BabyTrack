@@ -6,9 +6,10 @@ namespace Frontend.MVVM.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {
-    public MainViewModel(INavigationService navigationService)
+    public MainViewModel(INavigationService navigationService, ISerializationService serializationService)
     {
         NavigationService = navigationService;
+        SerializationService = serializationService;
     }
 
     public Command NavigateToHomeCommand { get { return GetCommand(NavigateHome); } }
@@ -19,6 +20,12 @@ public class MainViewModel : ViewModelBase
     {
         get { return _navigationService; }
         set { SetValue(ref _navigationService, value); }
+    }
+
+    public ISerializationService SerializationService
+    {
+        get { return _serializationService; }
+        set { SetValue(ref _serializationService, value); }
     }
 
     private void NavigateHome()
@@ -32,4 +39,5 @@ public class MainViewModel : ViewModelBase
     }
 
     private INavigationService _navigationService = null!;
+    private ISerializationService _serializationService = null!;
 }

@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using DataStructures.SaveData;
+using DataStructures.Serialization;
+using Frontend.MVVM.ViewModels;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,7 +26,8 @@ namespace Frontend
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            var viewModel = ((MainViewModel)DataContext);
+            viewModel.SerializationService.Serialize(new MainData(new BreastFeedData(), new ToiletData(), new SleepData()));
         }
     }
 }
